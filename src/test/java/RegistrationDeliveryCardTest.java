@@ -13,21 +13,23 @@ import static com.codeborne.selenide.Selenide.$;
 public class RegistrationDeliveryCardTest {
 
     @BeforeEach
-    void setup() { Selenide.open ("http://localhost:9999");}
+    void setup() {
+        Selenide.open("http://localhost:9999");
+    }
 
-        private String generateDate(long addDays, String pattern){
+    private String generateDate(long addDays, String pattern) {
         return LocalDate.now()
-            .plusDays (addDays)
-                    . format (DateTimeFormatter.ofPattern(pattern));
-        }
+                .plusDays(addDays)
+                .format(DateTimeFormatter.ofPattern(pattern));
+    }
 
 
-        @Test
-                public void shouldBeSuccessfullyCompleted () {
+    @Test
+    public void shouldBeSuccessfullyCompleted() {
         $("[data-test-id='city'] input").setValue("Челябинск");
-        String planningDate = generateDate(4,"dd.MM.yyyy");
+        String planningDate = generateDate(4, "dd.MM.yyyy");
         $("[data-test-id='date'] input")
-                .press(Keys.chord (Keys.SHIFT, Keys.HOME), Keys.DELETE)
+                .press(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.DELETE)
                 .setValue(planningDate);
         $("[data-test-id='name'] input").setValue("Петров Петр Петрович");
         $("[data-test-id='phone'] input").setValue("+75555555555");
